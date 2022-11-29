@@ -1,5 +1,4 @@
 # file: spec/integration/application_spec.rb
-
 require "spec_helper"
 require "rack/test"
 require_relative "../../app"
@@ -8,12 +7,10 @@ describe Application do
   include Rack::Test::Methods
   let(:app) { Application.new }
 
-  context "GET to /hello" do
-    it "returns 200 OK with the right content" do
-      response = get("/hello", name: "Aimee")
-
-      expect(response.status).to eq(200)
-      expect(response.body).to eq("Hello Aimee")
+  context "GET /hello" do
+    it "returns the html index" do
+      response = get("/hello")
+      expect(response.body).to include("<h1>Hello!</h1>")
     end
   end
 
