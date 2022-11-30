@@ -15,7 +15,7 @@ describe Application do
       response = get('/')
 
       expect(response.status).to eq(200)
-      expect(response.body).to include('<form action="/check" method="POST">')
+      expect(response.body).to include('<title>Postcode Checker</title>')
       expect(response.body).to include('<input type="text" name="postcode" />')
     end
   end
