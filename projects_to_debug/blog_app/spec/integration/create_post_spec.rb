@@ -17,9 +17,9 @@ describe Application do
 
         expect(response.status).to eq(200)
         expect(response.body).to include('<form method="POST" action="/posts">')
-        expect(response.body).to include('<input type="text" name="title" />')
-        expect(response.body).to include('<input type="text" name="content" />')
-        expect(response.body).to include('<input type="text" name="tags" />')
+        expect(response.body).to include('<input type="text" name="title" pattern="[a-zA-Z0-9,]*"/>')
+        expect(response.body).to include('<input type="text" name="content" pattern="[a-zA-Z0-9,]*"/>')
+        expect(response.body).to include('<input type="text" name="tags" pattern="[a-zA-Z0-9,]*"/>')
       end
     end
 
@@ -28,14 +28,16 @@ describe Application do
         response = post(
           '/posts',
           title: 'A new post',
-          content: 'Hi there',
+          content: ('https://www.youtube.com/watch?v=_u-7rWKnVVo'),
           tags: 'random,things'
         )
 
         response = get('/')
 
         expect(response.body).to include('<h3>A new post</h3>')
+        expect(response.body).to_not include('=+*%@#£^`!/?-')
       end
     end
   end
 end
+

@@ -9,9 +9,9 @@
 
   <h3>Add a new post</h3>
   <form method="POST" action="/posts">
-    Title: <input type="text" name="title" />
-    Content: <input type="text" name="content" />
-    Tags: <input type="text" name="tags" />
+    Title: <input type="text" name="title" pattern="[a-zA-Z0-9,]*"/>
+    Content: <input type="text" name="content" pattern="[a-zA-Z0-9,]*"/>
+    Tags: <input type="text" name="tags" pattern="[a-zA-Z0-9,]*"/>
 
     <input type="submit" value="Submit" />
   </form>
